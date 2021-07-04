@@ -24,7 +24,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "commit": "git add . && git commit -m \"Je men fiche\"",
-    "deploy": "git checkout -b temp-deployment && yarn build && git add -f build && git commit -m 'deployment' && git push --repo=origin $(git subtree split --prefix build master):allo -f && git checkout master && git branch -D temp-deployment",
+    "deploy": "git checkout -b temp-deployment && yarn build && git add -f build && git commit -m 'deployment' && git subtree split --prefix build master | xargs -I ARG sh -c '{git push --repo=origin ARGS:allo -f}' && git checkout master && git branch -D temp-deployment",
     "deploy-oups": "git checkout master && git branch -D temp-deployment"
   },
   "eslintConfig": {
